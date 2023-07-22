@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}">
     <title>Agregar Usuario</title>
   </head>
   <body>
     <h1>Agregar Usuario</h1>
     <form method="post">
-      <label>Nombre:</label>
-      <input type="text" name="nombre" required /><br />
-      <label>Email:</label>
-      <input type="email" name="email" required /><br />
-      <label>Edad:</label>
-      <input type="number" name="edad" required /><br />
-      <button type="submit">Agregar</button>
+      <section class="Adicionar">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required />
+        <br>
+        <br>
+        <label>Email:</label>
+        <input type="email" name="email" required />
+        <br>
+        <br>
+        <label>Edad:</label>
+        <input type="number" name="edad" required />
+        <br>
+        <br>
+        <button type="submit">Agregar</button>
+        <br>
+        <br>
+      </section>
     </form>
+    <br>
+    <br>
     <a href="{{ url_for('index') }}">Volver a la lista</a>
   </body>
 </html>

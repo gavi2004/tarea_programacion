@@ -3,16 +3,25 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
-# Configuración de la conexión a la base de datos MySQL
-app.config['MYSQL_HOST'] = 'localhost'  # Cambiar esto con la dirección de tu servidor MySQL
-app.config['MYSQL_USER'] = 'mizzu'  # Cambiar esto con tu usuario de MySQL
-app.config['MYSQL_PASSWORD'] = '1234'  # Cambiar esto con tu contraseña de MySQL
-app.config['MYSQL_DB'] = 'myflaskdb'  # Cambiar esto con el nombre de la base de datos creada
-
+app.config['MYSQL_HOST'] = 'localhost' 
+app.config['MYSQL_USER'] = 'Reisita' 
+app.config['MYSQL_PASSWORD'] = '1234'  
+app.config['MYSQL_DB'] = 'database'  
 
 mysql = MySQL(app)
 
-# Crear la tabla de usuarios en la base de datos
+with app.app_context():
+    cur = mysql.connection.cursor()
+    cur.execute('''
+            CREATE TABLE IF NOT EXISTS admin (
+                   id INT AUTO_INCREMENT PRIMARY KEY,
+                   nombre VARCHAR(100) NOT NULL,
+                   password VARCHAR(100) NOT NULL
+            )
+                   ''')
+    mysql.connection.commit()
+    cur.close()
+
 with app.app_context():
     cur = mysql.connection.cursor()
     cur.execute('''
@@ -27,6 +36,27 @@ with app.app_context():
     cur.close()
 
 @app.route('/')
+def administrador():
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM admin')
+    admin = cur.fetchall()
+    cur.close()
+    return render_template('sesion.html', admin=admin)
+
+@app.route('/', methods=['GET', 'POST'])
+def validar():
+    if request.method == 'POST':
+        usuario = request.form['admin']
+        password = request.form['pase_admin']
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT * FROM admin CHECK id nombre password %s', (usuario,password))
+        cur.fetchone()
+        cur.close()
+        return redirect(url_for('index.html'))
+    return render_template('sesion.html')
+    
+
+@app.route('/index')
 def index():
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM usuarios')
@@ -34,6 +64,7 @@ def index():
     cur.close()
     return render_template('index.html', usuarios=usuarios)
 
+    
 @app.route('/add', methods=['GET', 'POST'])
 def add_user():
     if request.method == 'POST':
