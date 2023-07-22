@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Agregar Usuario</title>
+  </head>
+  <body>
+    <h1>Agregar Usuario</h1>
+    <form method="post">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" required /><br />
+      <label>Email:</label>
+      <input type="email" name="email" required /><br />
+      <label>Edad:</label>
+      <input type="number" name="edad" required /><br />
+      <button type="submit">Agregar</button>
+    </form>
+    <a href="{{ url_for('index') }}">Volver a la lista</a>
+  </body>
+</html>

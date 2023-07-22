@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Editar Usuario</title>
+  </head>
+  <body>
+    <h1>Editar Usuario</h1>
+    <form method="post">
+      <label>Nombre:</label>
+      <input type="text" name="nombre" value="{{ user[1] }}" required /><br />
+      <label>Email:</label>
+      <input type="email" name="email" value="{{ user[2] }}" required /><br />
+      <label>Edad:</label>
+      <input type="number" name="edad" value="{{ user[3] }}" required /><br />
+      <button type="submit">Guardar</button>
+    </form>
+    <a href="{{ url_for('index') }}">Volver a la lista</a>
+  </body>
+</html>
