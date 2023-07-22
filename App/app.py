@@ -42,8 +42,6 @@ def administrador():
     admin = cur.fetchall()
     cur.close()
     return render_template('sesion.html', admin=admin)
-
-@app.route('/', methods=['GET', 'POST'])
 def validar():
     if request.method == 'GET':
         usuario = request.form['admin']
@@ -52,11 +50,9 @@ def validar():
         cur.execute('SELECT * FROM admin WHERE nombre = %s AND password = %s', (usuario, password))
         cur.fetchall()
         cur.close()
-        
-        return redirect(url_for('index'))
+        return redirect(url_for('index')) 
     return render_template('sesion.html')
     
-
 @app.route('/index')
 def index():
     cur = mysql.connection.cursor()
