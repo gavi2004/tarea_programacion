@@ -5,8 +5,8 @@
     <title>Agregar Usuario</title>
   </head>
   <body>
-    <h1>Agregar Usuario</h1>
-    <form method="post">
+    <form method="post" class="añadir">
+      <h1>Agregar Usuario</h1>
       <section class="Adicionar">
         <label>Nombre:</label>
         <input type="text" name="nombre" required />
@@ -23,10 +23,11 @@
         <button type="submit">Agregar</button>
         <br>
         <br>
-      </section>
-    </form>
     <br>
     <br>
     <a href="{{ url_for('index') }}">Volver a la lista</a>
+      </section>
+    </form> 
+
   </body>
 </html>

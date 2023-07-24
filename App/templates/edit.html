@@ -7,8 +7,8 @@
     <title>Editar Usuario</title>
   </head>
   <body>
-    <h1>Editar Usuario</h1>
-    <form method="post">
+    <form method="post" class="Editar">
+      <h1>Editar Usuario</h1>
       <label>Nombre:</label>
       <input type="text" name="nombre" value="{{ user[1] }}" required />
       <br>
@@ -24,7 +24,7 @@
       <button type="submit">Guardar</button>
       <br>
       <br>
-    </form>
     <a href="{{ url_for('index') }}">Volver a la lista</a>
+    </form>
   </body>
 </html>

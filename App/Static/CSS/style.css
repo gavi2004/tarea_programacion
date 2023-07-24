@@ -1,5 +1,5 @@
 body{
-    background-color: gray;
+    background-color: antiquewhite;
 }
 
 h1{
@@ -10,10 +10,14 @@ h1{
     text-align: center;
 }
 
-.loginazo{
+.formulario{
     text-align: center;
-    background-color: thistle;
-    margin: 5rem;
-    padding: 5rem;
-    border: 5rem;
+}
+
+.Editar{
+    text-align: center;
+}
+
+.añadir{
+    text-align: center;
 }

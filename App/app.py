@@ -13,18 +13,6 @@ mysql = MySQL(app)
 with app.app_context():
     cur = mysql.connection.cursor()
     cur.execute('''
-            CREATE TABLE IF NOT EXISTS admin (
-                   id INT AUTO_INCREMENT PRIMARY KEY,
-                   nombre VARCHAR(100) NOT NULL,
-                   password VARCHAR(100) NOT NULL
-            )
-                   ''')
-    mysql.connection.commit()
-    cur.close()
-
-with app.app_context():
-    cur = mysql.connection.cursor()
-    cur.execute('''
         CREATE TABLE IF NOT EXISTS usuarios (
             id INT AUTO_INCREMENT PRIMARY KEY,
             nombre VARCHAR(100) NOT NULL,
@@ -35,25 +23,8 @@ with app.app_context():
     mysql.connection.commit()
     cur.close()
 
-@app.route('/')
-def administrador():
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM admin')
-    admin = cur.fetchall()
-    cur.close()
-    return render_template('sesion.html', admin=admin)
-def validar():
-    if request.method == 'GET':
-        usuario = request.form['admin']
-        password = request.form['pase_admin']
-        cur = mysql.connection.cursor()
-        cur.execute('SELECT * FROM admin WHERE nombre = %s AND password = %s', (usuario, password))
-        cur.fetchall()
-        cur.close()
-        return redirect(url_for('index')) 
-    return render_template('sesion.html')
     
-@app.route('/index')
+@app.route('/')
 def index():
     cur = mysql.connection.cursor()
     cur.execute('SELECT * FROM usuarios')
