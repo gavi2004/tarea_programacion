@@ -1,5 +1,5 @@
 body{
-    background-color: antiquewhite;
+    background-color:crimson;
 }
 
 h1{
@@ -19,5 +19,9 @@ h1{
 }
 
 .añadir{
+    text-align: center;
+}
+
+.centrado{
     text-align: center;
 }
